@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
   // tslint:disable-next-line:component-selector
   selector: 'events-app',
   template: `
-  <img src="/assets/images/basic-shield.png" />
+  <nav-bar></nav-bar>
+  <events-list></events-list>
   `
 })
 export class EventsAppComponent {
