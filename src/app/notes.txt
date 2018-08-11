@@ -1,0 +1,8 @@
+Module 6
+- create route.ts and add it to imports as routing Module
+- to use params in a compontnt use "Route" in constructor
+- put CanActivate prop in the routing to filter valid params
+- CanActivate(prevent user from accessing a component)
+- CanDeactivate(prevent user from leaving the page)
+- CanActivate/CanDeactivate can use service or a function
+
