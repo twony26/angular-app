@@ -14,18 +14,22 @@ import {
   EventService,
   CreateSessionComponent,
   SessionListComponent,
-  DurationPipe
+  DurationPipe,
+  UpvoteComponent,
+  VoterService,
+  LocationValidator
 } from './events/index';
 
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component'
-import { TOASTR_TOKEN, IToastr } from './common/toastr.service'
+import { JQ_TOKEN, TOASTR_TOKEN, CollapsibleWellComponent, IToastr, SimpleModalComponent, ModalTriggerComponent } from './common/index';
 import { appRoutes } from './route';
 import { Error404Component } from './errors/404.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
-declare let toastr:IToastr
+let toastr:IToastr = window['toaster'];
+let jquery = window['$'];
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -44,11 +48,17 @@ declare let toastr:IToastr
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerComponent,
+    UpvoteComponent,
+    LocationValidator
   ],
   providers: [
     EventService,
+    VoterService,
     { provide: TOASTR_TOKEN, useValue: toastr } ,
+    { provide: JQ_TOKEN, useValue: jquery } ,
     EventListResolver,
     EventRouteActivator,
     {
