@@ -13,17 +13,19 @@ import {
   EventRouteActivator,
   EventService,
   CreateSessionComponent,
-  SessionListComponent
+  SessionListComponent,
+  DurationPipe
 } from './events/index';
 
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/nav-bar.component'
-import { ToastrService } from './common/toastr.service'
+import { TOASTR_TOKEN, IToastr } from './common/toastr.service'
 import { appRoutes } from './route';
 import { Error404Component } from './errors/404.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CollapsibleWellComponent } from './common/collapsible-well.component';
 
+declare let toastr:IToastr
 @NgModule({
   imports: [
     BrowserModule,
@@ -41,11 +43,12 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   providers: [
     EventService,
-    ToastrService,
+    { provide: TOASTR_TOKEN, useValue: toastr } ,
     EventListResolver,
     EventRouteActivator,
     {
