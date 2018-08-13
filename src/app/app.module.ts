@@ -10,14 +10,15 @@ import {
   CreateEventComponent,
   checkDirtyState,
   EventListResolver,
-  EventRouteActivator,
+ // EventRouteActivator,
   EventService,
   CreateSessionComponent,
   SessionListComponent,
   DurationPipe,
   UpvoteComponent,
   VoterService,
-  LocationValidator
+  LocationValidator,
+  EventResolver
 } from './events/index';
 
 import { EventsAppComponent } from './events-app.component';
@@ -26,6 +27,7 @@ import { JQ_TOKEN, TOASTR_TOKEN, CollapsibleWellComponent, IToastr, SimpleModalC
 import { appRoutes } from './route';
 import { Error404Component } from './errors/404.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 let toastr:IToastr = window['toaster'];
 let jquery = window['$'];
@@ -35,7 +37,8 @@ let jquery = window['$'];
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   declarations: [
     EventsAppComponent,
@@ -60,7 +63,7 @@ let jquery = window['$'];
     { provide: TOASTR_TOKEN, useValue: toastr } ,
     { provide: JQ_TOKEN, useValue: jquery } ,
     EventListResolver,
-    EventRouteActivator,
+    EventResolver,
     {
       provide: 'canDeactivateCreateEvent',
       useValue: checkDirtyState
